@@ -1,0 +1,937 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(to bottom, #2d0b1e 0%, #12020a 50%, #000000 100%);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Tajawal', sans-serif;
+}
+
+/* ==========================================================================
+   1. واجهة الترحيب
+   ========================================================================== */
+.welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(22, 4, 14, 0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease;
+    padding: 20px;
+}
+
+.welcome-box {
+    background: rgba(255, 182, 193, 0.1);
+    border: 2px solid rgba(244, 143, 177, 0.3);
+    padding: 40px 30px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(244, 143, 177, 0.1);
+    max-width: 450px;
+    width: 100%;
+    animation: fadeInBox 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cat-main-icon {
+    font-size: 4rem;
+    color: #ff8da1;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px #ff5c7c);
+    animation: catPulse 2s infinite alternate;
+}
+
+.welcome-box h2 {
+    color: #f48fb1;
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+}
+
+.welcome-box .target-name {
+    color: #fff;
+    font-size: 2.8rem;
+    margin: 0 0 15px 0;
+    font-weight: 900;
+    text-shadow: 0 0 15px #ff5c7c, 0 0 30px #f48fb1;
+}
+
+.welcome-box p {
+    color: #e0b0c5;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+.start-btn {
+    background: linear-gradient(135deg, #ff5c7c 0%, #ffafcc 100%);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 16px 40px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 92, 124, 0.5);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.start-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px #ff5c7c;
+}
+
+/* ==========================================================================
+   2. العنوان العلوي المضيء لـ جنى
+   ========================================================================== */
+.flower-title-container {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -15px);
+    z-index: 10;
+    width: 90%;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 1.5s ease;
+}
+
+.flower-title-container.show-title {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.glowing-text {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    color: #fff;
+    margin: 0;
+    font-weight: 900;
+    text-shadow: 0 0 10px #ff5c7c, 0 0 25px #f48fb1;
+    animation: textPulse 3s ease-in-out infinite alternate;
+}
+
+/* ==========================================================================
+   3. الأنيميشن والورود الزهرية السحرية الخلفية
+   ========================================================================== */
+.ground {
+    width: 100vmin;
+    aspect-ratio: 1.5;
+    overflow: visible;
+    position: relative;
+    transform-origin: center center;
+    transform: scale(2);
+    animation: shrink 1.5s ease-in forwards 4s;
+}
+
+.flower-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10%;
+    aspect-ratio: 16;
+    container-type: inline-size;
+    filter: drop-shadow(0 0 25cqi rgba(244, 143, 177, 0.6));
+    transform-origin: bottom center;
+}
+
+.flower-container:first-child {
+    top: 50%;
+    left: 50%;
+}
+
+.flower-container:nth-child(2) {
+    top: 45%;
+    left: 30%;
+    width: 8%;
+}
+
+.flower-container:nth-child(3) {
+    top: 45%;
+    left: 70%;
+    width: 8%;
+}
+
+.flower-container:nth-child(4) {
+    top: 85%;
+    left: 95%;
+    width: 20%;
+}
+
+.flower-container:nth-child(5) {
+    top: 130%;
+    left: 30%;
+    width: 30%;
+}
+
+.flower-container:nth-child(6) {
+    top: 60%;
+    left: 10%;
+    width: 12%;
+}
+
+.flower-container:nth-child(7) {
+    top: 20%;
+    left: 15%;
+    width: 6%;
+}
+
+.flower-container:nth-child(8) {
+    top: 15%;
+    left: 35%;
+    width: 5%;
+}
+
+.flower-container:nth-child(9) {
+    top: 26%;
+    left: 85%;
+    width: 7%;
+}
+
+.flower-container:nth-child(10) {
+    top: 22%;
+    left: 60%;
+    width: 6.5%;
+}
+
+.flower-top {
+    width: 50cqi;
+    aspect-ratio: 1.5;
+    z-index: 1;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.flower-circle {
+    width: 30cqi;
+    aspect-ratio: 1.5;
+    background-color: #fff;
+    box-shadow: inset 0px -3cqi 3cqi rgba(255, 92, 124, 0.4);
+    position: absolute;
+    scale: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 15cqi #ffafcc);
+}
+
+.flower-petal {
+    width: 80%;
+    aspect-ratio: 1;
+    background-image: linear-gradient(135deg, #ff5c7c 20%, #ffafcc 80%);
+    position: absolute;
+    opacity: 0;
+}
+
+.flower-petal__1 {
+    bottom: 42%;
+    right: 65%;
+    border-radius: 50% 50% 0 50%;
+    transform: rotate(-10deg) scale(0.82);
+}
+
+.flower-petal__2 {
+    bottom: 42%;
+    left: 65%;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(100deg) scale(0.82);
+}
+
+.flower-petal__3 {
+    bottom: 40%;
+    left: 10%;
+    border-radius: 50%;
+    transform: rotate(45deg) scale(0.8);
+}
+
+.flower-petal__4 {
+    top: -10%;
+    left: 80%;
+    border-radius: 50%;
+    transform: rotate(135deg) scale(0.9);
+}
+
+.flower-petal__5 {
+    top: -10%;
+    right: 70%;
+    border-radius: 50%;
+    transform: rotate(315deg) scale(0.9);
+}
+
+.flower-petal__6 {
+    top: 50%;
+    right: 65%;
+    border-radius: 50%;
+    transform: rotate(270deg) scale(1.1);
+}
+
+.flower-petal__7 {
+    top: 50%;
+    left: 65%;
+    border-radius: 50%;
+    transform: rotate(180deg) scale(1.1);
+}
+
+.flower-petal__8 {
+    top: 50%;
+    left: 10%;
+    border-radius: 50%;
+    transform: rotate(225deg) scale(1);
+}
+
+.flower-light {
+    width: 3cqi;
+    aspect-ratio: 1;
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.flower-light:nth-child(odd) {
+    background-color: #ffafcc;
+    filter: blur(2cqi) drop-shadow(0 0 5cqi #ff5c7c);
+}
+
+.flower-light:nth-child(even) {
+    background-color: #ff5c7c;
+    filter: blur(2cqi) drop-shadow(0 0 5cqi #f48fb1);
+}
+
+.flower-light__1 {
+    top: 10%;
+    left: 20%;
+    scale: 0.8;
+}
+
+.flower-light__2 {
+    top: 20%;
+    left: 80%;
+    scale: 1.2;
+}
+
+.flower-light__3 {
+    top: 30%;
+    left: 50%;
+    scale: 1.5;
+}
+
+.flower-light__4 {
+    top: 40%;
+    left: 10%;
+}
+
+.flower-light__5 {
+    top: 50%;
+    left: 90%;
+    scale: 2;
+}
+
+.flower-light__6 {
+    top: 60%;
+    left: 30%;
+}
+
+.flower-light__7 {
+    top: 70%;
+    left: 40%;
+    scale: 0.5;
+}
+
+.flower-light__8 {
+    top: 60%;
+    left: 60%;
+}
+
+.flower-bottom {
+    width: 6%;
+    aspect-ratio: 0.02;
+    left: 47%;
+    top: 50%;
+}
+
+.flower-stem {
+    width: 100%;
+    height: 100%;
+    transform: scaleY(0);
+    background-image: linear-gradient(to top, transparent 10%, #ff5c7c88, #ffafccbb);
+    border-radius: 50px 50px 0 0;
+    transform-origin: bottom center;
+}
+
+.flower-leaf {
+    width: 40%;
+    aspect-ratio: 2.5;
+    position: absolute;
+    scale: 0;
+    opacity: 0;
+}
+
+.flower-leaf:nth-child(even) {
+    right: 55%;
+    background-image: linear-gradient(120deg, #ff5c7caa 0%, transparent 90%);
+    border-radius: 50% 0 50% 0;
+    transform-origin: bottom right;
+}
+
+.flower-leaf:nth-child(odd) {
+    left: 55%;
+    background-image: linear-gradient(300deg, #ff5c7caa 0%, transparent 90%);
+    border-radius: 0 50 0 50%;
+    transform-origin: bottom left;
+}
+
+.flower-leaf__2 {
+    top: 25%;
+    transform: rotate(-15deg);
+}
+
+.flower-leaf__1 {
+    top: 31%;
+    transform: rotate(15deg);
+}
+
+.flower-leaf__4 {
+    top: 37%;
+    transform: rotate(-15deg) scale(1.2);
+}
+
+.flower-leaf__3 {
+    top: 43%;
+    transform: rotate(15deg) scale(1.2);
+}
+
+.flower-leaf__6 {
+    top: 50%;
+    transform: rotate(-15deg) scale(1.5);
+}
+
+.flower-leaf__5 {
+    top: 56%;
+    transform: rotate(15deg) scale(1.5);
+}
+
+.flower-grass {
+    position: absolute;
+    bottom: -20cqi;
+    width: 80cqi;
+    height: 120cqi;
+    opacity: 0;
+    scale: 0;
+    mask-image: linear-gradient(to top, transparent 15%, #fff 50%);
+    -webkit-mask-image: linear-gradient(to top, transparent 15%, #fff 50%);
+}
+
+.flower-grass:nth-child(odd) {
+    right: 55%;
+    border-top-right-radius: 100%;
+    border-right: 5cqi solid #ff5c7caa;
+    transform-origin: bottom right;
+}
+
+.flower-grass:nth-child(even) {
+    left: 55%;
+    border-top-left-radius: 100%;
+    border-left: 5cqi solid #ff5c7caa;
+    transform-origin: bottom left;
+}
+
+.flower-grass__3 {
+    left: 70% !important;
+    width: 75cqi;
+    height: 100cqi;
+}
+
+.flower-grass__4 {
+    right: 70% !important;
+    width: 75cqi;
+    height: 90cqi;
+}
+
+.animate.flower-container {
+    animation: flower-rotate 12s linear infinite;
+}
+
+.animate .flower-circle {
+    animation: grass-grow 0.25s ease-in forwards 3s;
+}
+
+.animate .flower-petal {
+    animation: petal-grow 0.5s ease-in forwards, flower-rotate 3s linear infinite;
+}
+
+.animate .flower-stem {
+    animation: stem-grow 3s ease-in forwards;
+}
+
+.animate .flower-grass {
+    animation: grass-grow 1s ease-in forwards 1.5s, flower-rotate 6s linear infinite;
+}
+
+.animate .flower-leaf {
+    animation: grass-grow 0.75s ease-in forwards, flower-rotate 6s linear infinite;
+}
+
+.animate .flower-petal__3 {
+    animation-delay: 3.2s;
+}
+
+.animate .flower-petal__2 {
+    animation-delay: 3.3s;
+}
+
+.animate .flower-petal__4 {
+    animation-delay: 3.4s;
+}
+
+.animate .flower-petal__7 {
+    animation-delay: 3.5s;
+}
+
+.animate .flower-petal__8 {
+    animation-delay: 3.6s;
+}
+
+.animate .flower-petal__6 {
+    animation-delay: 3.7s;
+}
+
+.animate .flower-petal__5 {
+    animation-delay: 3.8s;
+}
+
+.animate .flower-petal__1 {
+    animation-delay: 3.9s;
+}
+
+.animate .flower-leaf__2 {
+    animation-delay: 2s;
+}
+
+.animate .flower-leaf__1 {
+    animation-delay: 1.9s;
+}
+
+.animate .flower-leaf__4 {
+    animation-delay: 1.8s;
+}
+
+.animate .flower-leaf__3 {
+    animation-delay: 1.65s;
+}
+
+.animate .flower-leaf__6 {
+    animation-delay: 1.5s;
+}
+
+.animate .flower-leaf__5 {
+    animation-delay: 1.25s;
+}
+
+.animate .flower-light {
+    animation: light-float 5s ease-in-out infinite;
+}
+
+.animate .flower-light__1 {
+    animation-delay: 4.7s;
+}
+
+.animate .flower-light__2 {
+    animation-delay: 5.2s;
+}
+
+.animate .flower-light__3 {
+    animation-delay: 5.7s;
+}
+
+.animate .flower-light__4 {
+    animation-delay: 6.2s;
+}
+
+.animate .flower-light__5 {
+    animation-delay: 6.7s;
+}
+
+.animate .flower-light__6 {
+    animation-delay: 7.2s;
+}
+
+.animate .flower-light__7 {
+    animation-delay: 7.7s;
+}
+
+.animate .flower-light__8 {
+    animation-delay: 8.2s;
+}
+
+@keyframes fadeInBox {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes catPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes textPulse {
+    0% {
+        text-shadow: 0 0 10px #ff5c7c, 0 0 20px #ffafcc;
+    }
+
+    100% {
+        text-shadow: 0 0 25px #ff5c7c, 0 0 45px #f48fb1;
+    }
+}
+
+@keyframes petal-grow {
+
+    0%,
+    100% {
+        scale: 1;
+        opacity: 0.85;
+    }
+
+    50% {
+        scale: 1.08;
+        opacity: 0.95;
+    }
+}
+
+@keyframes grass-grow {
+    100% {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+@keyframes stem-grow {
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes flower-rotate {
+
+    0%,
+    100% {
+        rotate: 0deg;
+    }
+
+    25% {
+        rotate: 4deg;
+    }
+
+    75% {
+        rotate: -4deg;
+    }
+}
+
+@keyframes shrink {
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes light-float {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(0, -50cqi);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(0, -100cqi);
+    }
+}
+
+/* ==========================================================================
+   4. تصميم المكتوب على شكل قطة (Cat Envelope) العبقري
+   ========================================================================== */
+.envelope-container {
+    position: absolute;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+.envelope-container.show-envelope {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.envelope-wrapper {
+    height: 380px;
+}
+
+.cat-envelope {
+    position: relative;
+    width: 300px;
+    height: 190px;
+    background: rgba(255, 175, 204, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 25px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 92, 124, 0.3);
+    cursor: pointer;
+    top: 140px;
+}
+
+/* أذان القطة الفوقية */
+.cat-ear {
+    position: absolute;
+    top: -25px;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 30px solid rgba(255, 110, 145, 0.8);
+    filter: drop-shadow(0 -2px 5px rgba(255, 92, 124, 0.3));
+}
+
+.cat-ear.left {
+    left: 25px;
+    transform: rotate(-15deg);
+}
+
+.cat-ear.right {
+    right: 25px;
+    transform: rotate(15deg);
+}
+
+/* تفاصيل وجه القطة على واجهة المكتوب */
+.cat-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 6;
+    /* فوق الغطاء */
+    pointer-events: none;
+}
+
+.cat-eye {
+    position: absolute;
+    top: 45px;
+    width: 14px;
+    height: 14px;
+    background: #331021;
+    border-radius: 50%;
+}
+
+.cat-eye.left {
+    left: 65px;
+}
+
+.cat-eye.right {
+    right: 65px;
+}
+
+.cat-nose {
+    position: absolute;
+    top: 62px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 10px;
+    background: #ff5c7c;
+    border-radius: 50% 50% 60% 60%;
+}
+
+/* شوارب القطة الكيوت */
+.cat-whisker {
+    position: absolute;
+    height: 2px;
+    background: rgba(51, 16, 33, 0.4);
+    border-radius: 2px;
+}
+
+.cat-whisker.left-1 {
+    width: 40px;
+    top: 65px;
+    left: 15px;
+    transform: rotate(5deg);
+}
+
+.cat-whisker.left-2 {
+    width: 38px;
+    top: 75px;
+    left: 18px;
+    transform: rotate(-5deg);
+}
+
+.cat-whisker.right-1 {
+    width: 40px;
+    top: 65px;
+    right: 15px;
+    transform: rotate(-5deg);
+}
+
+.cat-whisker.right-2 {
+    width: 38px;
+    top: 75px;
+    right: 18px;
+    transform: rotate(5deg);
+}
+
+/* أغطية وجيوب المكتوب السفلية */
+.flap {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 105px solid rgba(255, 92, 124, 0.2);
+    transform-origin: top;
+    transition: transform 0.6s ease, z-index 0.2s ease;
+    z-index: 4;
+}
+
+.pocket {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 95px solid rgba(255, 175, 204, 0.15);
+    z-index: 3;
+    border-radius: 0 0 25px 25px;
+}
+
+/* ورقة الرسالة داخل القطة */
+.letter {
+    position: absolute;
+    background: linear-gradient(135deg, #ffffff 0%, #fff0f3 100%);
+    width: 92%;
+    height: 88%;
+    top: 4%;
+    left: 4%;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.6s ease, height 0.8s ease;
+    z-index: 2;
+    overflow: hidden;
+    padding: 20px;
+    border: 1px dashed #ffafcc;
+}
+
+.letter-text {
+    text-align: center;
+    color: #331021;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.letter-text h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+    color: #ff5c7c;
+}
+
+.letter-text p {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+.signature {
+    margin-top: 12px !important;
+    font-weight: 700 !important;
+    color: #ad1457 !important;
+}
+
+/* أنيميشن الفتح والسحب الفخم للأعلى */
+.cat-envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.cat-envelope.open .letter {
+    transform: translateY(-145px);
+    z-index: 5;
+    height: 235px;
+}
+
+.cat-envelope.open .letter-text {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   5. حركة القطط الصغيرة المتطايرة
+   ========================================================================== */
+#cats-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.flying-cat {
+    position: absolute;
+    color: #ff5c7c;
+    filter: drop-shadow(0 0 8px #ffafcc);
+    transform-style: preserve-3d;
+}
+
+@keyframes catFlyAway {
+    0% {
+        transform: translate(0, 0) scale(0.2) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--cx), var(--cy)) scale(var(--cs)) rotate(var(--cr));
+        opacity: 0;
+    }
+}
